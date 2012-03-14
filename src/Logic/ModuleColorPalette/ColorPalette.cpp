@@ -20,22 +20,22 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 
 
 	for (int i=0;i<size;i++)
-	{	printf("id of actual square %d", recognizedSquares[i]->GetId());
+	{
 		if (recognizedSquares[i]->GetId()==1) {
-			blue=recognizedSquares[i];
+			blue = recognizedSquares[i];
 		}
 		if (recognizedSquares[i]->GetId()==2) {
-					red=recognizedSquares[i];
-				}
+			red = recognizedSquares[i];
+		}
 		if (recognizedSquares[i]->GetId()==3) {
-							green=recognizedSquares[i];
-						}
+			green = recognizedSquares[i];
+		}
 
 	}
 
-	CvPoint bluepoint=blue->GetCenterCoordinates();
+	CvPoint bluepoint = blue->GetCenterCoordinates();
 
-	printf("Blue coordinates are %d, %d",bluepoint.x,bluepoint.y);
+	printf("Blue coordinates are %d, %d", bluepoint.x, bluepoint.y);
 
 }
 
