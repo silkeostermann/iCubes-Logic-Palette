@@ -7,14 +7,14 @@ int main(int argc, char *argv[])
 {
 	ColorPalette *palette = new ColorPalette();
 
-	CvPoint p1 = cvPoint(3, 4);
-	Square *sq1 = new Square(1, p1, 5, 6);
+	CvPoint p1 = cvPoint(100, 4);
+	Square *sq1 = new Square(1, p1, 100, 6);
 
-	CvPoint p2 = cvPoint(3, 4);
-	Square *sq2 = new Square(2, p2, 5, 6);
+	CvPoint p2 = cvPoint(50, 4);
+	Square *sq2 = new Square(2, p2, 50, 6);
 
-	CvPoint p3 = cvPoint(3, 4);
-	Square *sq3 = new Square(3, p3, 5, 6);
+	CvPoint p3 = cvPoint(100, 4);
+	Square *sq3 = new Square(3, p3, 100, 6);
 
 	Square *squares[3] = {sq1, sq2, sq3};
 
