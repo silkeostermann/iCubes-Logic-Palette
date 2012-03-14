@@ -11,9 +11,11 @@
 
 void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size)
 {
-	//int number_of_elements = sizeof(recognizedSquares)/sizeof(Square *);
+	printf("Processing %d squares.\n", (int)size);
 
-	//printf("number of squares: %d",number_of_elements);
+	Square *blue = 0;
+	Square *red = 0;
+	Square *green = 0;
 
 
 }
