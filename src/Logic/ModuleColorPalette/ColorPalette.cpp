@@ -13,10 +13,29 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 {
 	printf("Processing %d squares.\n", (int)size);
 
-	Square *blue = 0;
-	Square *red = 0;
-	Square *green = 0;
+	const Square *blue = 0;
+	const Square *red = 0;
+	const Square *green = 0;
 
+
+
+	for (int i=0;i<size;i++)
+	{	printf("id of actual square %d", recognizedSquares[i]->GetId());
+		if (recognizedSquares[i]->GetId()==1) {
+			blue=recognizedSquares[i];
+		}
+		if (recognizedSquares[i]->GetId()==2) {
+					red=recognizedSquares[i];
+				}
+		if (recognizedSquares[i]->GetId()==3) {
+							green=recognizedSquares[i];
+						}
+
+	}
+
+	CvPoint bluepoint=blue->GetCenterCoordinates();
+
+	printf("Blue coordinates are %d, %d",bluepoint.x,bluepoint.y);
 
 }
 

@@ -17,6 +17,9 @@ int main(int argc, char *argv[])
 	Square *sq3 = new Square(3, p3, 5, 6);
 
 	Square *squares[3] = {sq1, sq2, sq3};
+
+	printf("id of square 1 %d",squares[1]->GetId());
+
 	palette->ProcessSquares((const Square **)squares, 3);
 
     return 0;
