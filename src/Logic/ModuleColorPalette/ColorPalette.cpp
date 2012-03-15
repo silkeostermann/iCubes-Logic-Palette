@@ -51,6 +51,10 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 	int greenAmount	= 255 * ((float)greenpoint.x/100);
 	int blueAmount	= 255 * ((float)bluepoint.x/100);
 
+	int redWidth = redAmount*492/255;
+	int greenWidth = greenAmount*492/255;
+	int blueWidth = blueAmount*492/255;
+
 	// Prepare the UI images
 	QImage *image = new QImage(QSize(640, 640), QImage::Format_RGB16);
 	image->load("interface.jpg");
@@ -66,31 +70,26 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 	QPainter *painter = new QPainter(image);
 
 
-
-
-
 	//Draw the section of a bar we need for each color
 	QImage *redbar = new QImage(QSize(300, 20), QImage::Format_RGB16);
 	redbar->load("Bar_Red.png");
-	painter->drawImage(60, 185, (redbar->copy(0,0,(redAmount*492/255)+10, 20)));
+	painter->drawImage(60, 185, (redbar->copy(0, 0, redWidth+10, 20)));
 
 	QImage *greenbar = new QImage(QSize(300, 20), QImage::Format_RGB16);
 	greenbar->load("Bar_Green.png");
-	painter->drawImage(60, 267, (greenbar->copy(0,0,(greenAmount*492/255)+10, 20)));
+	painter->drawImage(60, 267, (greenbar->copy(0, 0, greenWidth+10, 20)));
 
 	QImage *bluebar = new QImage(QSize(300, 20), QImage::Format_RGB16);
 	bluebar->load("Bar_Blue.png");
-	painter->drawImage(60, 347, (bluebar->copy(0,0,(blueAmount*492/255)+10, 20)));
+	painter->drawImage(60, 347, (bluebar->copy(0, 0, blueWidth+10, 20)));
 
 	// Draw ball for each color
-	painter->drawImage((redAmount*492/255)+60, 180, *ball);
-	painter->drawImage((greenAmount*492/255)+60, 262, *ball);
-	painter->drawImage((blueAmount*492/255)+60, 342, *ball);
+	painter->drawImage(redWidth+60, 180, *ball);
+	painter->drawImage(greenWidth+60, 262, *ball);
+	painter->drawImage(blueWidth+60, 342, *ball);
 
 	// Draw the chosen color
-	for (int i=1; i<120; i++)
-		for (int j=1; j<70; j++)
-			image->setPixel((i+250),j+500,color->rgb());
+	painter->fillRect(62, 445, 517, 106, color->rgb());
 
 	// Save the image
 	image->save("test.png");
