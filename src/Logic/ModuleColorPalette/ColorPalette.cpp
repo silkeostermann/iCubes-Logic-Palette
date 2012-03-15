@@ -5,6 +5,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QImage>
 #include <QtGui/QColor>
+#include <QtCore/QRect>
 
 // Here goes member definition
 
@@ -52,9 +53,10 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 
 	// Prepare the UI images
 	QImage *image = new QImage(QSize(640, 640), QImage::Format_RGB16);
-	image->load("interface.png");
+	image->load("interface.jpg");
 	QImage *ball = new QImage(QSize(52, 54), QImage::Format_RGB16);
 	ball->load("ball.png");
+
 
 	// Compose the color
 	QColor *color = new QColor(redAmount, greenAmount, blueAmount, 255);
@@ -63,10 +65,27 @@ void ColorPalette::ProcessSquares (const Square **recognizedSquares, size_t size
 	// Prepare the painter
 	QPainter *painter = new QPainter(image);
 
+
+
+
+
+	//Draw the section of a bar we need for each color
+	QImage *redbar = new QImage(QSize(300, 20), QImage::Format_RGB16);
+	redbar->load("Bar_Red.png");
+	painter->drawImage(60, 185, (redbar->copy(0,0,(redAmount*492/255)+10, 20)));
+
+	QImage *greenbar = new QImage(QSize(300, 20), QImage::Format_RGB16);
+	greenbar->load("Bar_Green.png");
+	painter->drawImage(60, 267, (greenbar->copy(0,0,(greenAmount*492/255)+10, 20)));
+
+	QImage *bluebar = new QImage(QSize(300, 20), QImage::Format_RGB16);
+	bluebar->load("Bar_Blue.png");
+	painter->drawImage(60, 347, (bluebar->copy(0,0,(blueAmount*492/255)+10, 20)));
+
 	// Draw ball for each color
-	painter->drawImage(redAmount, 135, *ball);
-	painter->drawImage(blueAmount, 245, *ball);
-	painter->drawImage(redAmount, 355, *ball);
+	painter->drawImage((redAmount*492/255)+60, 180, *ball);
+	painter->drawImage((greenAmount*492/255)+60, 262, *ball);
+	painter->drawImage((blueAmount*492/255)+60, 342, *ball);
 
 	// Draw the chosen color
 	for (int i=1; i<120; i++)
